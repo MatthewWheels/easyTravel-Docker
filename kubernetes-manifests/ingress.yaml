@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: easytravel-ingress
+  annotations:
+    ingress.kubernetes.io/proxy-body-size: 256m
+    nginx.org/client-max-body-size: 256m
+    nginx.ingress.kubernetes.io/proxy-body-size: 256m
+spec:
+  rules:
+  - host: "73..229.101.1"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: angular-nginx-service
+            port:
+              number: 80
